@@ -1,7 +1,7 @@
 /*
  * @Author: Dalegac
  * @Date: 2021-08-20 14:02:04
- * @LastEditTime: 2021-08-22 17:24:54
+ * @LastEditTime: 2021-08-23 23:28:17
  * @LastEditors: Dalegac
  * @Description: Just say something
  */
@@ -46,20 +46,20 @@ const urls = [
     time: 3000,
     priority: 1,
   },
-]
+];
 
 // 设置要执行的任务
 function loadImg(url) {
   return new Promise((resolve, reject) => {
-    console.log("————" + url.info + "start!")
+    console.log("————" + url.info + "start!");
     setTimeout(() => {
-      console.log(url.info + "  OK!!!")
-      resolve()
-    }, url.time)
-  })
+      console.log(url.info + "  OK!!!");
+      resolve();
+    }, url.time);
+  });
 }
 
 module.exports = {
   urls,
   loadImg,
-}
+};
