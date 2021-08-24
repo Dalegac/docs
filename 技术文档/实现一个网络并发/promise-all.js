@@ -1,9 +1,9 @@
 /*
  * @Author: Dalegac
  * @Date: 2021-08-23 00:10:55
- * @LastEditTime: 2021-08-23 23:27:41
+ * @LastEditTime: 2021-08-24 14:38:44
  * @LastEditors: Dalegac
- * @Description: Just say something
+ * @Description: 手写PromiseAll
  */
 function PromiseAll(promiseArray) {
   return new Promise(function (resolve, reject) {

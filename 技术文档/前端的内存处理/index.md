@@ -1,6 +1,6 @@
 ## 平时有关注过前端的内存处理吗?
 
-### 1. 你了解 js 中的内存管理吗? 什么情况会导致内存泄露？
+### 1. 了解 js 中的内存管理吗? 什么情况会导致内存泄露？
 
 1. 内存的生命周期
 
@@ -11,13 +11,13 @@
 2. Js 中的内存分配
 
    ```js
-   const n = 123 // 给数值变量分配内存
-   const s = "azerty" // 给字符串分配内存
+   const n = 123; // 给数值变量分配内存
+   const s = "azerty"; // 给字符串分配内存
 
    const o = {
      a: 1,
      b: null,
-   } // 给对象及其包含的值分配内存
+   }; // 给对象及其包含的值分配内存
    ```
 
 3. Js 中的内存使用
@@ -25,8 +25,8 @@
    使用值的过程实际上是对分配内存进行读取与写入的操作。 读取与写入可能是写入一个变量或者一个对象的属性值，甚至传递函数的参数。
 
    ```js
-   var a = 10 // 分配内存
-   console.log(a) // 对内存的使用
+   var a = 10; // 分配内存
+   console.log(a); // 对内存的使用
    ```
 
 4. Js 中的垃圾回收机制
@@ -59,10 +59,10 @@
 
    ```js
    function foo() {
-     bar1 = "some text" // 没有声明变量 实际上是全局变量 => window.bar1
-     this.bar2 = "some text" // 全局变量 => window.bar2
+     bar1 = "some text"; // 没有声明变量 实际上是全局变量 => window.bar1
+     this.bar2 = "some text"; // 全局变量 => window.bar2
    }
-   foo()
+   foo();
    ```
 
    5.2 未被清理的定时器和回调函数
@@ -70,13 +70,13 @@
    如果后续 renderer 元素被移除，整个定时器实际上没有任何作用。 但如果你没有回收定时器，整个定时器依然有效, 不但定时器无法被内存回收， 定时器函数中的依赖也无法回收。在这个案例中的 serverData 也无法被回收。
 
    ```js
-   var serverData = loadData()
+   var serverData = loadData();
    setInterval(function () {
-     var renderer = document.getElementById("renderer")
+     var renderer = document.getElementById("renderer");
      if (renderer) {
-       renderer.innerHTML = JSON.stringify(serverData)
+       renderer.innerHTML = JSON.stringify(serverData);
      }
-   }, 5000) // 每 5 秒调用一次
+   }, 5000); // 每 5 秒调用一次
    ```
 
    5.3 闭包
@@ -84,22 +84,22 @@
    在 JS 开发中，我们会经常用到闭包，一个内部函数，有权访问包含其的外部函数中的变量。 下面这种情况下，闭包也会造成内存泄露
 
    ```js
-   var theThing = null
+   var theThing = null;
    var replaceThing = function () {
-     var originalThing = theThing
+     var originalThing = theThing;
      var unused = function () {
        if (originalThing)
          // 对于 'originalThing'的引用
-         console.log("hi")
-     }
+         console.log("hi");
+     };
      theThing = {
        longStr: new Array(1000000).join("*"),
        someMethod: function () {
-         console.log("message")
+         console.log("message");
        },
-     }
-   }
-   setInterval(replaceThing, 1000)
+     };
+   };
+   setInterval(replaceThing, 1000);
    ```
 
    这段代码，每次调用 replaceThing 时，theThing 获得了包含一个巨大的数组和一个对于新闭包 someMethod 的对象。 同时 unused 是一个引用了 originalThing 的闭包。
@@ -112,12 +112,12 @@
    ```js
    var elements = {
      image: document.getElementById("image"),
-   }
+   };
    function doStuff() {
-     elements.image.src = "http://example.com/image_name.png"
+     elements.image.src = "http://example.com/image_name.png";
    }
    function removeImage() {
-     document.body.removeChild(document.getElementById("image"))
+     document.body.removeChild(document.getElementById("image"));
      // 这个时候我们对于 #image 仍然有一个引用, Image 元素, 仍然无法被内存回收.
    }
    ```
