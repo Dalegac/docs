@@ -13,6 +13,7 @@ function mockSetInterval(fn, delay, ...args) {
       recur();
     }, delay);
   };
+
   recur();
 }
 
