@@ -1,12 +1,11 @@
-/*
- * @Author: Dalegac
- * @Date: 2021-08-29 20:02:59
- * @LastEditTime: 2021-08-29 20:12:31
- * @LastEditors: Dalegac
- * @Description: Just say something
- */
-
 let timerId = null;
+
+/**
+ * 使用setTimeout模拟实现setInterval
+ * @param {Function} fn
+ * @param {*} delay
+ * @param  {...any} args
+ */
 function mockSetInterval(fn, delay, ...args) {
   const recur = function () {
     timerId = setTimeout(() => {
@@ -17,8 +16,8 @@ function mockSetInterval(fn, delay, ...args) {
   recur();
 }
 
-function clearSetInterval(id) {
-  clearInterval(id);
+function mockClearInterval(id) {
+  clearTimeout(id);
 }
 
 mockSetInterval(
@@ -26,5 +25,9 @@ mockSetInterval(
     console.log(name);
   },
   1000,
-  "dale"
+  "lubai"
 );
+
+setTimeout(() => {
+  mockClearInterval(timerId);
+}, 4000);

@@ -1,19 +1,20 @@
-/*
- * @Author: Dalegac
- * @Date: 2021-08-29 20:21:42
- * @LastEditTime: 2021-08-29 20:25:53
- * @LastEditors: Dalegac
- * @Description: 防抖
- */
+function onInput(event) {
+    const value = event.target.value;
+    if (value) {
+        console.log(event.target.value);
+    }
+}
+
 
 function debounce(fn, wait) {
-  let timeout = null;
-  return function () {
-    if (timeout !== null) {
-      clearTimeout(timeout);
+    var timeout = null;
+    return function () {
+        if (timeout !== null)
+            clearTimeout(timeout);
+        timeout = setTimeout(() => {
+            fn.apply(this, arguments);
+        }, wait);
     }
-    timeout = setTimeout(() => {
-      fn.apply(this, arguments);
-    }, wait);
-  };
 }
+
+const debounceOnInput = debounce(onInput, 300);
