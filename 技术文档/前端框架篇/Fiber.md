@@ -1,3 +1,11 @@
+<!--
+ * @Author: Dalegac
+ * @Date: 2021-09-07 13:58:34
+ * @LastEditTime: 2021-09-08 12:22:53
+ * @LastEditors: Dalegac
+ * @Description: Fiber架构学习理解
+-->
+
 ## 1. 设计理念
 
 ### React 哲学
@@ -149,25 +157,27 @@ export const IdlePriority = 5;
 Lin Clark 举了一个例子
 React 的工作流程分为两个阶段：
 
-- render 阶段
-- commit 阶段
+- render 阶段(可中断的)
+- commit 阶段(不可中断)
   ![Fiber工作流程](https://gitee.com/Dalegac/static-pic/raw/master/images/Fiber%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B.jpg)
 
 render 阶段，从 workInProgress Tree 的根出发，深度优先遍历树，组件会经过 beginWork 和 completeWork 阶段，最后 react 将 workInProgress Tree 作为 pendingCommit，第一阶段到此结束。至此我们更新了 workInProgress Tree，并且得出了树中需要更新的结点列表 effectList。
 ![effectList](https://gitee.com/Dalegac/static-pic/raw/master/images/effectList.jpg)
 ![workInProgress Tree](https://gitee.com/Dalegac/static-pic/raw/master/images/pendingcommit.jpg)
 
-commit阶段，react会依次遍历effectList，将这次的更新commit给DOM。
+commit 阶段，react 会依次遍历 effectList，将这次的更新 commit 给 DOM。
 
 ![遍历effectList](https://gitee.com/Dalegac/static-pic/raw/master/images/%E9%81%8D%E5%8E%86effectlist.jpg)
-### Double Buffering
-在构建workInProgress Fiber树时会尝试复用current Fiber树中已有的Fiber节点内的属性。类似于canavas的双缓存，这样能节省内存分配和垃圾回收的时间。
-![双缓存机制](https://gitee.com/Dalegac/static-pic/raw/master/images/doublebuffering.png)
 
+### Double Buffering
+
+在构建 workInProgress Fiber 树时会尝试复用 current Fiber 树中已有的 Fiber 节点内的属性。类似于 canavas 的双缓存，这样能节省内存分配和垃圾回收的时间。
+![双缓存机制](https://gitee.com/Dalegac/static-pic/raw/master/images/doublebuffering.png)
 
 ## 4. 参考
 
-[Beyond React 16 by Dan Abramov - JSConf Iceland](https://www.youtube.com/watch?v=v6iR3Zk4oDY&list=PL3j9y0zHLR-nWZ66DsnexvS0TNhtiqElY&index=1&t=58s)
-[Lin Clark - A Cartoon Intro to Fiber - React Conf 2017](https://www.youtube.com/watch?v=ZCuYPiUIONs&list=PL3j9y0zHLR-nWZ66DsnexvS0TNhtiqElY&index=2&t=576s)
+- [Beyond React 16 by Dan Abramov - JSConf Iceland](https://www.youtube.com/watch?v=v6iR3Zk4oDY&list=PL3j9y0zHLR-nWZ66DsnexvS0TNhtiqElY&index=1&t=58s)
 
-*[^_^]: [React Fiber Architecture](https://github.com/acdlite/react-fiber-architecture)
+- [Lin Clark - A Cartoon Intro to Fiber - React Conf 2017](https://www.youtube.com/watch?v=ZCuYPiUIONs&list=PL3j9y0zHLR-nWZ66DsnexvS0TNhtiqElY&index=2&t=576s)
+
+<!--[React Fiber Architecture](https://github.com/acdlite/react-fiber-architecture)-->

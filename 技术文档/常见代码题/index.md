@@ -1,3 +1,10 @@
+<!--
+ * @Author: Dalegac
+ * @Date: 2021-09-06 11:11:07
+ * @LastEditTime: 2021-10-14 09:25:25
+ * @LastEditors: Dalegac
+ * @Description: Just say something
+-->
 # 常见代码题
 
 
@@ -22,3 +29,6 @@ function mockSetInterval(fn, delay, ...args) {
 要求使用一个div实现红绿灯效果, 把一个圆形 div 按照绿色 3 秒，黄色 1 秒，红色 2 秒循环改变背景色。
 
 Tips: 同学们可以回去尝试使用 setTimeout嵌套/promise链式调用 分别实现一下
+
+
+## 实现url的解析
