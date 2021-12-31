@@ -1,7 +1,7 @@
 /*
  * @Author: Dalegac
  * @Date: 2021-10-15 22:46:22
- * @LastEditTime: 2021-10-15 23:11:25
+ * @LastEditTime: 2021-10-18 16:36:04
  * @LastEditors: Dalegac
  * @Description: Just say something
  */
@@ -23,12 +23,11 @@ function startsWith(search) {
     pos = 0;
   }
   var start = Math.min(Math.max(pos, 0), stringLength);
-  console.log("hxhxhhx");
   return String.prototype.indexOf.call(string, searchString, pos) == start;
 }
 Object.defineProperty(String.prototype, "startsWith", {
   value: startsWith,
 });
 
-var str = "fsfdfdfsdfs";
+var str = "fsfdfydfsdfs";
 console.log(str.startsWith("fsfdfdfsdfs", 0));
